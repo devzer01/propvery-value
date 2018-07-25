@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 </head>
 <body>
-<div class="container row" style="height: 100%">
+<div class="container-fluid row" style="height: 100%">
     <div id="map" class="col-sm-9"></div>
     <div class="col-sm-3">
         <h2 class="h2">Begin Here</h2>
@@ -105,12 +105,12 @@
         });
 
         var markers = [];
-        for (var i = 0; i < 2; i++) {
+        /**for (var i = 0; i < 2; i++) {
             var dataPhoto = data.photos[i];
             var latLng = new google.maps.LatLng(dataPhoto.latitude, dataPhoto.longitude);
             var marker = new google.maps.Marker({position: latLng});
             markers.push(marker);
-        }
+        } **/
         var markerCluster = new MarkerClusterer(map, markers);
 
         for (var l=0; l < land.land.length; l++) {
