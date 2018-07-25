@@ -55,7 +55,7 @@
     </div>
 </div>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyC1K8YFMvB0cKMHzFnY29Ea6hEuuM8Zq4o&language=si&region=LK"></script>
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyC1K8YFMvB0cKMHzFnY29Ea6hEuuM8Zq4o&language=si&region=LK&&libraries=visualization"></script>
 <script src="/js/markerclusterer.js"></script>
 <script src="/js/data.json.js"></script>
 <script>
@@ -74,8 +74,10 @@
     });
     var map;
     var geocoder;
+    var heatMapData = [];
 
     var setMarker = function(land, results, status) {
+
         console.log(results);
         if (status == 'OK') {
             map.setCenter(results[0].geometry.location);
@@ -85,6 +87,9 @@
                 title: land.price + " x " + land.land
             });
 
+            heatMapData.push({location: new google.maps.LatLng(results[0].geometry.location.lat(),
+                    results[0].geometry.location.lng()), weight: parseInt(land.price.replace(",", "")) / 1000});
+
             var infowindow = new google.maps.InfoWindow({
                 content: "<h3>LKR" + land.price + " x " + land.land  + "</h3>"
             });
@@ -92,7 +97,14 @@
             marker.addListener('click', function() {
                 infowindow.open(map, marker);
             });
+        }
 
+        if (heatMapData.length >= 5) {
+            var heatmap = new google.maps.visualization.HeatmapLayer({
+                data: heatMapData,
+                radius: 20
+            });
+            heatmap.setMap(map);
         }
     };
 
@@ -113,8 +125,10 @@
         } **/
         var markerCluster = new MarkerClusterer(map, markers);
 
+
         for (var l=0; l < land.land.length; l++) {
-            var address = land.land[l].road + ", " + land.land[l].area + ", Colombo, Sri Lanka";
+            var district = land.land[l].district || "Colombo";
+            var address = land.land[l].road + ", " + land.land[l].area + ", " + district + " , Sri Lanka";
             geocoder.geocode( { 'address': address}, setMarker.bind(this, land.land[l]));
         }
     }

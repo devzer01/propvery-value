@@ -57,6 +57,26 @@ var land = {
             "price": "6,500,000"
         },
         {
+            "road" : "Asiri Gardens, Paranapattiya, Road",
+            "area" : "Pilimatalawa",
+            "land" : 10,
+            "price": "350,000",
+            "district" : "Kandy"
+        },
+        {
+            "road" : "Gamunu Mawatha",
+            "area" : "Oruwala, Athurugiriya",
+            "land" : 24,
+            "price": "315,000",
+            "district" : "Colombo"
+        },
+        {
+            "road" : "sirimal Uyana",
+            "area" : "ratmalana",
+            "land" : 8.3,
+            "price": "1,987,951"
+        },
+        {
             "road" : "wijerama road",
             "area" : "Nuegoda",
             "land" : 8.5,
