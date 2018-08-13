@@ -57,7 +57,7 @@
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyC1K8YFMvB0cKMHzFnY29Ea6hEuuM8Zq4o&language=si&region=LK&&libraries=visualization"></script>
 <script src="/js/markerclusterer.js"></script>
-<script src="/js/data.json.js"></script>
+<script src="/data"></script>
 <script>
     var step = 1;
     $(document).ready(function () {
@@ -84,7 +84,7 @@
             var marker = new google.maps.Marker({
                 map: map,
                 position: results[0].geometry.location,
-                title: land.price + " x " + land.land
+                title: (land.price / land.land)
             });
 
             heatMapData.push({location: new google.maps.LatLng(results[0].geometry.location.lat(),
@@ -113,7 +113,7 @@
 
         map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 6.9271, lng: 79.8612},
-            zoom: 11
+            zoom: 13
         });
 
         var markers = [];
