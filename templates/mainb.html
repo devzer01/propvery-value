@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Property Values</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-group, .form-check, #step2, #step3, #step1, #step3-liquid, #step3-invest {
+            display: none;
+        }
+
+
+    </style>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid row" style="height: 100%">
+    <div id="map" class="col-sm-9"></div>
+    <div class="col-sm-3">
+        <h2 class="h2">Begin Here</h2>
+            <div class="form-group" id="step1">
+                <label for="exampleInputEmail1">Location</label>
+                <select class="form-control" id="location">
+                    <option>Colombo</option>
+                    <option>Kandy</option>
+                    <option>Galle</option>
+                </select>
+            </div>
+            <div class="form-group" id="step2">
+                <button class="btnStep2" id="liquid">Liquidate</button>
+                <button class="btnStep2" id="invest">Invest</button>
+            </div>
+            <div class="form-check" id="step3-liquid">
+                <input type="radio"> Urgent <br/>
+                <input type="radio"> Maximum Return <br/>
+            </div>
+        <div class="form-check" id="step3-invest">
+            Min <br/>
+            Max <br/>
+        </div>
+
+            <button type="button" id="next" class="btn btn-primary">Next</button>
+    </div>
+</div>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyC1K8YFMvB0cKMHzFnY29Ea6hEuuM8Zq4o&language=si&region=LK&&libraries=visualization"></script>
+<script src="/js/markerclusterer.js"></script>
+<script src="/js/data.json.js"></script>
+<script>
+    var step = 1;
+    $(document).ready(function () {
+        $("#step1").show();
+       $("#next").click(function() {
+           $("#step" + ++step).show();
+       });
+
+       $(".btnStep2").click(function (e) {
+           var id = "#step3-" + $(this).attr('id');
+           console.log(id);
+           $(id).show();
+       });
+    });
+    var map;
+    var geocoder;
+    var heatMapData = [];
+
+    var setMarker = function(land, results, status) {
+
+        console.log(results);
+        if (status == 'OK') {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location,
+                title: land.price + " x " + land.land
+            });
+
+            heatMapData.push({location: new google.maps.LatLng(results[0].geometry.location.lat(),
+                    results[0].geometry.location.lng()), weight: parseInt(land.price.replace(",", "")) / 1000});
+
+            var infowindow = new google.maps.InfoWindow({
+                content: "<h3>LKR" + land.price + " x " + land.land  + "</h3>"
+            });
+
+            marker.addListener('click', function() {
+                infowindow.open(map, marker);
+            });
+        }
+
+        if (heatMapData.length >= 5) {
+            var heatmap = new google.maps.visualization.HeatmapLayer({
+                data: heatMapData,
+                radius: 20
+            });
+            heatmap.setMap(map);
+        }
+    };
+
+    function initMap() {
+        geocoder = new google.maps.Geocoder();
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 6.9271, lng: 79.8612},
+            zoom: 11
+        });
+
+        var markers = [];
+        /**for (var i = 0; i < 2; i++) {
+            var dataPhoto = data.photos[i];
+            var latLng = new google.maps.LatLng(dataPhoto.latitude, dataPhoto.longitude);
+            var marker = new google.maps.Marker({position: latLng});
+            markers.push(marker);
+        } **/
+        var markerCluster = new MarkerClusterer(map, markers);
+
+
+        for (var l=0; l < land.land.length; l++) {
+            var district = land.land[l].district || "Colombo";
+            var address = land.land[l].road + ", " + land.land[l].area + ", " + district + " , Sri Lanka";
+            geocoder.geocode( { 'address': address}, setMarker.bind(this, land.land[l]));
+        }
+    }
+    google.maps.event.addDomListener(window, 'load', initMap);
+</script>
+
+</body>
+</html>
+
