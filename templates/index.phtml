@@ -24,6 +24,179 @@
 
     </style>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script type="text/javascript">
+        var points = new Array(
+          [7.1406334, 79.9013603, 1, "Raddolugama", "566,667"],
+[6.9661284, 79.8790747, 3, "Colombo 15", "4,587,374"],
+[7.0623959, 79.9668308, 1, "Ganemulla", "1,312,500"],
+[7.351254, 79.8331758, 1, "West Kolinjadiya", "590,909"],
+[6.8055305, 80.135133, 1, "Handapangoda", "1,277,778"],
+[6.822775, 79.9018247, 1, "Werahera", "1,187,500"],
+[6.8411652, 79.9654324, 2, "Pannipitiya", "2,636,922"],
+[7.3118716, 80.6257539, 3, "Wattarantenna", "4,928,571"],
+[6.9060787, 79.9696277, 2, "Malabe", "2,424,945"],
+[6.8522148, 79.9248669, 2, "Maharagama", "2,038,734"],
+[7.0405674, 79.9388571, 1, "Narangoda Paluwa", "500,000"],
+[7.4897743, 80.3282738, 1, "Heraliyawala", "700,000"],
+[6.9060794, 79.9219295, 2, "Battaramulla", "2,875,000"],
+[6.8905834, 79.924918, 2, "Talawatugoda", "2,712,511"],
+[7.124735, 79.9406782, 1, "Nedagamuwa", "290,000"],
+[6.8696978, 79.8975264, 3, "Nugegoda", "4,158,702"],
+[7.4729813, 80.3547286, 1, "Kurunegala", "435,916"],
+[5.95492, 80.5549561, 1, "Matara", "816,667"],
+[7.1614489, 80.0543455, 1, "Veyangoda", "401,778"],
+[6.8090297, 79.9458514, 1, "Mavittara", "1,572,232"],
+[7.230622, 79.841451, 1, "Negombo", "1,153,574"],
+[6.8018027, 79.9226841, 2, "Piliyandala", "1,848,803"],
+[6.2458724, 80.067929, 1, "Ambalangoda", "943,889"],
+[6.8552665, 79.881483, 3, "Kalubowila", "3,824,906"],
+[6.924976, 79.8723001, 1, "Colombo 10", "375,000"],
+[6.800947, 79.9234128, 2, "Honanthar", "2,164,286"],
+[7.0603793, 79.8957756, 1, "Ja-Ela", "1,667,858"],
+[6.3162324, 80.8433145, 1, "Embilipitiya", "179,167"],
+[6.942052, 79.8638085, 1, "Colombo 12", "1,650,000"],
+[6.7786701, 79.9472502, 1, "Kesbewa", "1,572,618"],
+[6.9424282, 79.9045771, 1, "Wellampitiya", "1,343,750"],
+[6.8942085, 80.0244812, 1, "Homagama", "1,426,475"],
+[7.2277935, 80.0576834, 1, "Banduragoda", "75,000"],
+[6.9964769, 80.9663841, 1, "Nikagolla", "300,000"],
+[6.6362823, 79.9528451, 1, "Wadduwa", "933,156"],
+[6.9308305, 79.9842178, 2, "Kaduwela", "2,080,093"],
+[6.8703376, 79.8962092, 4, "Mirihana", "5,397,885"],
+[6.8411657, 79.9024779, 2, "Boralesgamuwa", "2,801,618"],
+[7.2663313, 80.5521785, 1, "Pilimathalawa", "282,143"],
+[6.9517846, 79.9132991, 1, "Sinharamulla", "1,643,939"],
+[6.0451626, 80.2129797, 1, "Galle", "956,728"],
+[7.0400869, 79.9030657, 1, "Kandana", "1,406,982"],
+[7.087046, 80.0175104, 1, "Gampaha", "1,136,535"],
+[7.2299603, 79.8548823, 1, "Dalupotha", "1,176,274"],
+[7.2576719, 79.84508, 1, "Daluwakotuwa", "935,357"],
+[7.2204962, 79.8478808, 1, "Kattuwa", "1,465,340"],
+[6.8004223, 79.9240619, 2, "Mampe", "1,895,238"],
+[7.3096237, 80.7103532, 2, "Kundasale", "1,850,905"],
+[7.2481255, 80.4465594, 1, "Mawanella", "194,444"],
+[6.0936187, 80.1430542, 2, "Rathgama", "2,071,429"],
+[6.7710714, 80.026944, 1, "Olaboduwa", "175,000"],
+[6.8302038, 79.8657917, 3, "Mount Lavinia", "5,039,773"],
+[6.8013923, 79.9598383, 1, "Mattegoda", "1,425,104"],
+[6.7510681, 80.1171783, 1, "Poruwadanda", "460,000"],
+[6.5839207, 79.9953099, 1, "Kalutara", "106,818"],
+[7.2936867, 80.7301035, 1, "Diyabubula", "279,630"],
+[5.9431072, 80.5203327, 1, "Walgama", "850,000"],
+[6.8437355, 79.8756258, 3, "Dehiwala-Mount Lavinia", "4,840,152"],
+[6.9773334, 79.9299339, 1, "Kiribathgoda", "762,626"],
+[9.6680351, 80.1920707, 1, "Meesalai East", "180,000"],
+[7.2154458, 80.6006035, 1, "Udunuwara", "288,306"],
+[6.0404508, 80.7422285, 1, "Puwakdandawa", "863,636"],
+[6.8693129, 79.9291551, 2, "Sri Jayawardenepura Kotte", "1,856,481"],
+[6.9088344, 79.9317933, 2, "Koswatta", "2,446,869"],
+[7.1718068, 79.9528021, 1, "Minuwangoda", "812,500"],
+[6.0621539, 80.8400708, 1, "Netolpitiya", "166,667"],
+[7.1867708, 79.9260548, 1, "Yatiyana", "319,149"],
+[6.8740656, 79.8675391, 3, "Colombo 06", "3,600,000"],
+[6.9818144, 79.9574836, 2, "Gonawala", "3,214,286"],
+[6.89543, 79.8930354, 3, "Nawala", "4,635,499"],
+[6.8376639, 79.9610916, 2, "Kottawa", "2,562,500"],
+[6.8914832, 79.9052768, 3, "Ethul Kotte", "3,936,391"],
+[7.0280037, 79.923, 1, "Ragama", "786,894"],
+[6.910578, 80.1115584, 1, "Hanwella", "291,667"],
+[7.0277559, 79.8982793, 1, "Welisara", "1,743,386"],
+[7.1247085, 79.8750028, 1, "Seeduwa", "1,040,909"],
+[7.5245348, 80.3282738, 1, "Pellandeniya", "433,333"],
+[7.0320915, 79.9733868, 1, "Kadawatha", "741,667"],
+[7.1020256, 79.9922127, 1, "Asgiriya", "630,435"],
+[6.782298, 79.9947956, 1, "Kahathuduwa", "772,500"],
+[6.894662, 80.0562864, 1, "Artigala", "1,000,000"],
+[6.9097318, 79.9012148, 3, "Rajagiriya", "4,848,889"],
+[6.6820357, 80.4120082, 2, "Ratnapura", "3,409,091"],
+[6.7229806, 80.0646682, 2, "Horana", "1,857,143"],
+[6.9397165, 80.1369268, 1, "Kosgama", "1,020,833"],
+[7.3174581, 80.7020359, 1, "Menikhinna", "117,647"],
+[7.3043325, 80.6521733, 1, "Sirimalwatta", "833,333"],
+[7.201477, 80.650421, 1, "Nilambe", "146,341"],
+[6.8729646, 79.9135638, 1, "Udahamulla", "748,333"],
+[7.2553845, 80.391533, 1, "Molagoda", "237,500"],
+[7.062254, 79.9412368, 1, "Batuwatta", "216,667"],
+[6.7885825, 79.8986981, 1, "Moratuwa", "1,510,441"],
+[7.1481142, 79.940256, 1, "Paththanduwana", "303,846"],
+[6.7246443, 80.0385869, 1, "Batuwita", "150,000"],
+[6.9311231, 79.8754563, 4, "Colombo 09", "6,000,000"],
+[6.8371393, 79.8848085, 2, "Attidiya North", "2,575,531"],
+[6.7181262, 79.9077091, 2, "Panadura", "2,241,005"],
+[7.1869972, 79.8209198, 1, "Aluthkuruwa", "368,421"],
+[7.357753, 80.6181218, 1, "Kudugala", "1,136,364"],
+[6.806951, 80.9572021, 1, "Diyatalawa", "150,000"],
+[6.9079758, 79.9451306, 1, "Thalahena", "1,243,590"],
+[6.8175063, 79.9569872, 1, "Siddamulla", "1,388,503"],
+[8.3192662, 80.3962712, 2, "Kumbichchankulama", "2,038,462"],
+[6.8094616, 79.8833594, 3, "Rathmalana", "4,069,983"],
+[6.8699681, 79.9514464, 1, "Hokandara", "67,647"],
+[7.272434, 80.69267, 1, "Kandy", "1,550,000"],
+[7.3730101, 80.514956, 1, "Thumpane", "550,000"],
+[7.037604, 79.9091252, 1, "Ambagahawatta", "937,500"],
+[7.2974635, 79.8821881, 1, "Dankotuwa", "297,500"],
+[6.9702032, 79.9402531, 2, "Peliyagoda", "2,409,091"],
+[6.9367411, 79.9270364, 1, "Angoda", "1,269,078"],
+[6.1596507, 80.1102099, 1, "Hikkaduwa", "131,579"],
+[6.8516746, 80.0327001, 1, "Godagama", "750,974"],
+[6.9135511, 79.978717, 2, "Isurupura", "2,714,286"],
+[7.1885687, 79.9040236, 1, "Andiambalama", "722,222"],
+[6.8104522, 79.9159342, 1, "Thumbowila", "812,500"],
+[7.1351904, 80.110055, 1, "Nittambuwa", "1,431,818"],
+[7.0553836, 80.5355737, 2, "Pasbage Korale", "2,000,000"],
+[6.2195843, 80.1170423, 1, "Batapola", "480,000"],
+[6.8833781, 79.8587099, 4, "Colombo 04", "5,666,667"],
+[6.1508888, 80.6937177, 1, "Walasmulla", "500,000"],
+[7.0310358, 80.0208828, 1, "Weliweriya", "436,651"],
+[7.2513317, 80.3463754, 1, "Kegalle", "395,833"],
+[6.1688292, 80.1793976, 1, "Baddegama", "169,231"],
+[6.1001388, 80.4759567, 1, "Akuressa", "250,000"],
+[6.0048765, 80.2617056, 1, "Unawatuna", "291,667"],
+[7.0727394, 80.0157633, 1, "Miriswatta", "600,000"],
+[7.1935611, 79.9214387, 1, "Katunayake", "460,606"],
+[6.4345732, 80.0003875, 1, "Aluthgama", "138,095"],
+[7.299051, 80.6507268, 1, "Lewella", "636,364"],
+[7.0867348, 79.9951838, 1, "Medagama", "946,667"],
+[6.9398278, 79.9846594, 1, "Biyagama", "1,040,000"],
+[7.0350111, 79.990991, 1, "Pahala Imbulgoda Jct.", "800,000"],
+[6.02855, 80.7893212, 1, "Tangalle", "1,666,667"],
+[7.2844682, 80.6049887, 2, "Halloluwa", "2,352,941"],
+[7.5619894, 79.8016569, 1, "Chilaw", "180,702"],
+[7.162409, 81.22159, 1, "Bibile", "26,875"],
+[8.3808027, 80.5902488, 3, "Anuradhapura", "3,950,000"],
+[6.9204959, 79.8459888, 2, "කොල්ලුපිටිය", "3,222,222"],
+[6.7434521, 80.2441926, 1, "රත්නපුර", "325,000"],
+[7.0113186, 79.9661316, 1, "Eldeniya", "1,400,000"],
+[7.1263574, 79.9780178, 1, "Udugampola", "431,250"],
+[6.9539135, 80.2102576, 1, "Avissawella", "848,485"],
+[7.123191, 79.9241673, 1, "Kotugoda", "478,333"],
+[6.831879, 79.87989, 3, "Mt. Lavinia", "4,142,857"],
+[6.1285798, 80.1112155, 1, "Thiranagama", "1,764,706"],
+[7.1022913, 79.9094751, 1, "Ekala", "608,333"],
+[7.5988685, 80.4827074, 1, "Gokarella", "184,211"],
+[7.1049117, 80.0428339, 1, "Bemmulla", "229,167"],
+[7.6155983, 80.6354665, 1, "Madawala Ulpotha", "117,857"],
+[6.8646266, 79.8917232, 1, "Jambugasmulla", "133,333"],
+[7.3441309, 80.7332216, 1, "Narampanawa", "157,143"],
+[6.9711655, 79.9222044, 1, "Kelaniya", "1,557,142"],
+[6.4411365, 80.0100924, 1, "Dharga Town", "607,143"],
+[7.6853695, 81.7260123, 2, "Kattankudy", "3,000,000"],
+[7.472123, 80.0446221, 1, "Kuliyapitiya", "125,000"],
+[7.3219923, 80.6062358, 1, "Inigala", "1,312,500"],
+[7.2657063, 79.8591235, 1, "Kochchikade", "746,154"],
+[9.7062078, 79.9556424, 1, "Araly", "200,000"],
+[7.2268033, 80.1958755, 1, "Warakapola", "150,000"],
+[6.7288686, 80.0297389, 1, "Pokunuwita", "250,000"],
+[7.6497793, 80.5054656, 1, "Melsiripura", "100,000"],
+[6.8684901, 79.9518878, 2, "Ruhunupura", "2,500,000"],
+[6.924638, 79.8511669, 2, "Colombo 02", "2,416,667"],
+[7.2837919, 79.8577634, 1, "Waikkal", "875,000"],
+[7.4341772, 79.8125892, 1, "Marawila", "1,200,000"],
+[6.9681706, 80.7911302, 2, "Nuwara Eliya", "1,818,182"],
+[6.9896112, 79.9738229, 1, "Mawaramandiya", "21,053"],
+[7.003199, 80.2091246, 2, "Mahadeniya", "2,500,000"]
+        );
+    </script>
 </head>
 <body>
 <div class="container-fluid row" style="height: 100%">
@@ -55,84 +228,81 @@
     </div>
 </div>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyAcO0UbFFYAIzSyZ4_G9Kjoe53Z4IlnRho&language=si&region=LK&&libraries=visualization"></script>
-<script src="/js/markerclusterer.js"></script>
-<script src="/data"></script>
-<script>
-    var step = 1;
-    $(document).ready(function () {
-        $("#step1").show();
-       $("#next").click(function() {
-           $("#step" + ++step).show();
-       });
-
-       $(".btnStep2").click(function (e) {
-           var id = "#step3-" + $(this).attr('id');
-           console.log(id);
-           $(id).show();
-       });
-    });
-    var map;
-    var geocoder;
-    var heatMapData = [];
-
-    var setMarker = function(land, results, status) {
-
-        console.log(results);
-        if (status == 'OK') {
-            map.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location,
-                title: (land.price / land.land)
-            });
-
-            heatMapData.push({location: new google.maps.LatLng(results[0].geometry.location.lat(),
-                    results[0].geometry.location.lng()), weight: parseInt(land.price.replace(",", "")) / 1000});
-
-            var infowindow = new google.maps.InfoWindow({
-                content: "<h3>LKR" + land.price + " x " + land.land  + "</h3>"
-            });
-
-            marker.addListener('click', function() {
-                infowindow.open(map, marker);
-            });
-        }
-
-        if (heatMapData.length >= 5) {
-            var heatmap = new google.maps.visualization.HeatmapLayer({
-                data: heatMapData,
-                radius: 20
-            });
-            heatmap.setMap(map);
-        }
-    };
-
-    function initMap() {
-        geocoder = new google.maps.Geocoder();
-
+<div id="map"></div>
+    <script type="text/javascript">
+      var map, heatmap;
+      function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 6.9271, lng: 79.8612},
-            zoom: 13
+            center: {lat: 6.9807102, lng: 79.9426305}
+            ,
+          zoom: 10
         });
 
-        var markers = [];
-        /**for (var i = 0; i < 2; i++) {
-            var dataPhoto = data.photos[i];
-            var latLng = new google.maps.LatLng(dataPhoto.latitude, dataPhoto.longitude);
-            var marker = new google.maps.Marker({position: latLng});
-            markers.push(marker);
-        } **/
-        var markerCluster = new MarkerClusterer(map, markers);
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          data: points.map(function(val) {
+            return {location: new google.maps.LatLng(val[0], val[1]), weight: val[2] * 3};
+            //{location: new google.maps.LatLng(37.782, -122.447), weight: 0.5},
+            //new google.maps.LatLng(37.782, -122.445
+          }),
+          map: map
+        });
+
+        // var geocoder = new google.maps.Geocoder();
+        // geocodeAddress(geocoder, map);
+      }
 
 
-        for (var l=0; l < land.land.length; l++) {
-            var district = land.land[l].district || "Colombo";
-            var address = land.land[l].road + ", " + land.land[l].area + ", " + district + " , Sri Lanka";
-            geocoder.geocode( { 'address': address}, setMarker.bind(this, land.land[l]));
-        }
-    }
-    google.maps.event.addDomListener(window, 'load', initMap);
+      function geocodeAddress(geocoder, resultsMap) {
+        var address = "Makola North, Makola Sri Lanka";
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location
+            });
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
+
+
+
+      // function geocodeLatLng(geocoder, map, infowindow) {
+      //   var input = document.getElementById('latlng').value;
+      //   var latlngStr = input.split(',', 2);
+      //   var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+      //   geocoder.geocode({'location': latlng}, function(results, status) {
+      //     if (status === 'OK') {
+      //       if (results[0]) {
+      //         map.setZoom(11);
+      //         var marker = new google.maps.Marker({
+      //           position: latlng,
+      //           map: map
+      //         });
+      //         infowindow.setContent(results[0].formatted_address);
+      //         infowindow.open(map, marker);
+      //       } else {
+      //         window.alert('No results found');
+      //       }
+      //     } else {
+      //       window.alert('Geocoder failed due to: ' + status);
+      //     }
+      //   });
+      // }
+
+    </script>
+
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1K8YFMvB0cKMHzFnY29Ea6hEuuM8Zq4o&callback=initMap&libraries=visualization"
+    async defer></script>
+
+    <script async defer>
+    $(document).ready(function(e) {
+
+    });
 </script>
 
 </body>
