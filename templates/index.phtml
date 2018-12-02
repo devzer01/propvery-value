@@ -18,7 +18,7 @@
         }
 
         .form-group, .form-check, #step2, #step3, #step1, #step3-liquid, #step3-invest {
-            display: none;
+
         }
 
 
@@ -247,19 +247,46 @@
           map: map
         });
 
-        // var geocoder = new google.maps.Geocoder();
+        var location = document.getElementById("location");
+
+        for (var i=0; i < points.length; i++) {
+            var option = document.createElement("option");
+            option.setAttribute("value", points[i][3]);
+            option.innerText = points[i][3];
+            location.appendChild(option);
+        }
+
+
         // geocodeAddress(geocoder, map);
+
+        var geocoder = new google.maps.Geocoder();
+
+
+        $("#location").change(
+          function(e, v) {
+            console.log($(this).val());
+            geocodeAddress(geocoder, map, $(this).val());
+          }
+      );
+
       }
 
 
-      function geocodeAddress(geocoder, resultsMap) {
-        var address = "Makola North, Makola Sri Lanka";
+
+
+      function geocodeAddress(geocoder, resultsMap, address) {
+
+          resultsMap = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16 }
+            )
+
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker({
               map: resultsMap,
-              position: results[0].geometry.location
+              position: results[0].geometry.location,
+              zoom: 18
             });
           } else {
             alert('Geocode was not successful for the following reason: ' + status);
