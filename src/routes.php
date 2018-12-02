@@ -18,6 +18,15 @@ $app->get("/data", function (Request $request, Response $response, array $args) 
 
 });
 
+$app->get("/area/[{area}]", function(Request $request, Response $response, array $args) {
+    // Sample log message
+//    var_dump($request->getAttribute('area'));
+//    var_dump($request->getAttribute('area') . ".json");
+//    var_dump(getcwd());
+//    var_dump(is_file("src/" . $request->getAttribute('area') . ".json"));
+    return $response->withJson(json_decode(file_get_contents("src/"  . $request->getAttribute('area') . ".json")));
+});
+
 $app->get('/[{name}]', function (Request $request, Response $response, array $args) {
     // Sample log message
     $this->logger->info("Slim-Skeleton '/' route");
@@ -25,3 +34,4 @@ $app->get('/[{name}]', function (Request $request, Response $response, array $ar
     // Render index view
     return $this->renderer->render($response, 'index.phtml', $args);
 });
+

@@ -265,11 +265,20 @@
         $("#location").change(
           function(e, v) {
             console.log($(this).val());
-            geocodeAddress(geocoder, map, $(this).val());
+            var map = geocodeAddress(geocoder, map, $(this).val());
+            $.get("/area/" + $(this).val(), function(json) {
+                for (var i = 0; i < json.length; i++) {
+                    setPosition(json[i][0], map, json[i][1] + ", " + json[i][2]);
+                }
+            });
           }
       );
 
-      }
+
+
+
+
+
 
 
 
@@ -278,23 +287,44 @@
 
           resultsMap = new google.maps.Map(document.getElementById('map'), {
           zoom: 16 }
-            )
+            );
 
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-              map: resultsMap,
-              position: results[0].geometry.location,
-              zoom: 18
-            });
+
           } else {
             alert('Geocode was not successful for the following reason: ' + status);
           }
         });
+        return resultsMap;
       }
 
+     function setPosition(address, map, title) {
+          geocoder.geocode({'address': address}, function(results, status) {
+                setMarker(results, map, title);
+          });
+     }
 
+      function setMarker(results, resultsMap, title)
+      {
+          var infowindow = new google.maps.InfoWindow({
+            content: title
+          });
+          var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location,
+              zoom: 18,
+              title: "xxxxx"
+            });
+          marker.setTitle(title);
+
+           marker.addListener('click', function() {
+                infowindow.open(map, marker);
+           });
+      }
+
+}
 
       // function geocodeLatLng(geocoder, map, infowindow) {
       //   var input = document.getElementById('latlng').value;

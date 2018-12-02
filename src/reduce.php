@@ -53,6 +53,9 @@ foreach ($files as $file) {
             $geoCode = json_decode($json, true);
             //printf("status %s", print_r($geoCode, true));
             if ($geoCode['status'] == "OK") {
+
+                $unitAddress = $address;
+
                 foreach ($geoCode['results'][0]['address_components'] as $component) {
                     if (in_array('country', $component['types'])) {
                         if ($component['short_name'] === 'LK') {
@@ -78,6 +81,7 @@ foreach ($files as $file) {
                     $reduced[$address]['price_per_pirch'][] = (intval($price) / intval($land_size));
                     $reduced[$address]['lat'] = $latitude;
                     $reduced[$address]['lng'] = $longitude;
+                    $reduced[$address]['custom'][] = [$unitAddress, number_format($price), $land_size];
                 }
 
                 sleep(2);
@@ -90,6 +94,10 @@ foreach ($files as $file) {
             if (count($reduced) > 3) {
            //    break;
             }
+        }
+
+        foreach ($reduced as $area => $reducedElement) {
+            file_put_contents($area . ".json", json_encode($reducedElement['custom']));
         }
 
     foreach ($reduced as $area => $reducedElement) {
