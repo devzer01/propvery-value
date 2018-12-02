@@ -20,9 +20,10 @@ foreach ($files as $file) {
         $address = null;
         $land_size = null;
         $price = "";
-
+        $siteUrl = null;
         foreach ($property as $k => $attr) {
             if ($k === 'price') $price = $attr;
+            $siteUrl = $property['url'];
             $latitude = null;
             $longitude = null;
             if ($k >= 0 && $k < 10) {
@@ -32,8 +33,7 @@ foreach ($files as $file) {
                         $address = preg_replace("/[0-9]+\/[0-9a-z]/", "", $address);
                     }
                     $addrParts = explode(" ", $address);
-//                    $address = $addrParts[count($addrParts) - 1];
-
+//                  $address = $addrParts[count($addrParts) - 1];
                 }
                 if (in_array($address, ['kundasala', 'road)'])) continue;
 
@@ -41,60 +41,60 @@ foreach ($files as $file) {
                     $land_size = $attr[1];
                     $land_size = preg_replace("/[a-zA-Z]+/", "", $land_size);
                 }
-                }
-            }
-
-            if($address === null) continue;
-            echo $address;
-            $locality = null;
-            $haveSub = false;
-            $url = "https://maps.googleapis.com/maps/api/geocode/json?address=" . urlencode($address) . "&key=AIzaSyC1K8YFMvB0cKMHzFnY29Ea6hEuuM8Zq4o";
-            $json = file_get_contents($url);
-            $geoCode = json_decode($json, true);
-            //printf("status %s", print_r($geoCode, true));
-            if ($geoCode['status'] == "OK") {
-
-                $unitAddress = $address;
-
-                foreach ($geoCode['results'][0]['address_components'] as $component) {
-                    if (in_array('country', $component['types'])) {
-                        if ($component['short_name'] === 'LK') {
-                            $latitude = $geoCode['results'][0]['geometry']['location']['lat'];
-                            $longitude = $geoCode['results'][0]['geometry']['location']['lng'];
-                        }
-                    }
-                    if (in_array('sublocality_level_1', $component['types'])) {
-                        $address = $component['short_name'];
-                        $haveSub = true;
-                    }
-
-                    if (in_array('locality', $component['types'])) {
-                        $locality = $component['short_name'];
-                    }
-                }
-
-                if (!$haveSub) {
-                    $address = $locality;
-                }
-
-                if ($land_size != null && $address != null) {
-                    $reduced[$address]['price_per_pirch'][] = (intval($price) / intval($land_size));
-                    $reduced[$address]['lat'] = $latitude;
-                    $reduced[$address]['lng'] = $longitude;
-                    $reduced[$address]['custom'][] = [$unitAddress, number_format($price), $land_size];
-                }
-
-                sleep(2);
-            } else {
-                continue;
-            }
-            //mapping
-
-            echo "number of elements " . count($reduced) .  "\n";
-            if (count($reduced) > 3) {
-           //    break;
             }
         }
+
+        if($address === null) continue;
+        echo $address;
+        $locality = null;
+        $haveSub = false;
+        $url = "https://maps.googleapis.com/maps/api/geocode/json?address=" . urlencode($address) . "&key=AIzaSyC1K8YFMvB0cKMHzFnY29Ea6hEuuM8Zq4o";
+        $json = file_get_contents($url);
+        $geoCode = json_decode($json, true);
+        //printf("status %s", print_r($geoCode, true));
+        if ($geoCode['status'] == "OK") {
+
+            $unitAddress = $address;
+
+            foreach ($geoCode['results'][0]['address_components'] as $component) {
+                if (in_array('country', $component['types'])) {
+                    if ($component['short_name'] === 'LK') {
+                        $latitude = $geoCode['results'][0]['geometry']['location']['lat'];
+                        $longitude = $geoCode['results'][0]['geometry']['location']['lng'];
+                    }
+                }
+                if (in_array('sublocality_level_1', $component['types'])) {
+                    $address = $component['short_name'];
+                    $haveSub = true;
+                }
+
+                if (in_array('locality', $component['types'])) {
+                    $locality = $component['short_name'];
+                }
+            }
+
+            if (!$haveSub) {
+                $address = $locality;
+            }
+
+            if ($land_size != null && $address != null) {
+                $reduced[$address]['price_per_pirch'][] = (intval($price) / intval($land_size));
+                $reduced[$address]['lat'] = $latitude;
+                $reduced[$address]['lng'] = $longitude;
+                $reduced[$address]['custom'][] = [$unitAddress, number_format($price), $land_size, $siteUrl];
+            }
+
+            sleep(2);
+        } else {
+            continue;
+        }
+        //mapping
+
+        echo "number of elements " . count($reduced) .  "\n";
+        if (count($reduced) > 3) {
+       //    break;
+        }
+    }
 
         foreach ($reduced as $area => $reducedElement) {
             file_put_contents($area . ".json", json_encode($reducedElement['custom']));
