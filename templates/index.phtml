@@ -268,7 +268,7 @@
             var map = geocodeAddress(geocoder, map, $(this).val());
             $.get("/area/" + $(this).val(), function(json) {
                 for (var i = 0; i < json.length; i++) {
-                    setPosition(json[i][0], map, json[i][1] + ", " + json[i][2]);
+                    setPosition(json[i][0], map, json[i][1] + ", " + json[i][2] + "<a href='" + json[i][3] + "'>site</a>");
                 }
             });
           }
